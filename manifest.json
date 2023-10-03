@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "HelpMeOut Screen recorder",
+  "description": "it records user's screen",
+  "icons": {
+    "16": "./src/images/Layer 1.png",
+    "32": "./src/images/Layer 1.png",
+    "120": "./src/images/Layer 1.png"
+  },
+  
+  "action": {
+    "default_popup":"index.html",
+    "icon":{
+      "16": "./src/images/Layer 1.png",
+      "32": "./src/images/Layer 1.png",
+      "120": "./src/images/Layer 1.png"
+     
+  }},
+
+  "host_permissions":[
+    "http://*/",
+    "https://*/"
+    
+  ],
+  "chrome_url_overrides": {
+    "newtab": "index.html" 
+}, 
+
+"permissions": [
+  "desktopCapture",
+  "videoCapture",
+  "audioCapture"
+],
+
+    "version": "1.0.0"
+
+    
+    
+  }
+  
