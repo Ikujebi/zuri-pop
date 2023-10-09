@@ -14,7 +14,7 @@ const ScreenRecorder = () => {
   const [isCurrenttabActive, setCurrenttabActive] = useState(false);
 
 
-  const [videoConstraints, setVideoConstraints] = useState({ video: true });
+  const [videoConstraints, setVideoConstraints] = useState({ video: {mediaSource: 'screen',} });
   const [audioConstraints, setAudioConstraints] = useState({ audio: true });
 
   const webcamRef = useRef(null);
@@ -39,7 +39,9 @@ const ScreenRecorder = () => {
   const startRecording = async () => {
     try {
       const constraints = {
-        video: videoConstraints,
+        video:  {
+          mediaSource: 'screen',
+        },
         audio: audioConstraints,
       };
 
@@ -51,7 +53,7 @@ const ScreenRecorder = () => {
 
       mediaRecorderRef.current = new RecordRTC(stream, {
         type: 'video',
-        mimeType: 'video/webm',
+        mimeType: 'video/mp4',
       });
 
       mediaRecorderRef.current.startRecording();
@@ -181,7 +183,7 @@ const ScreenRecorder = () => {
         <div className='mt-3'>
         <Switch uncheckedIcon={false} 
          onColor="#120B48" 
-         offColor="#120B48"
+         offColor="#120B48" 
           onChange={handleCameraChange} 
           checkedIcon={false}
           checked={videoConstraints.video}
@@ -197,7 +199,7 @@ const ScreenRecorder = () => {
         <div className='mt-3'>
         <Switch uncheckedIcon={false} 
          onColor="#120B48" 
-         offColor="#120B48"
+         offColor="#120B48" 
           onChange={handleAudioChange}
           checkedIcon={false} 
           checked={audioConstraints.audio} />
