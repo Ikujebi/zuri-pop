@@ -28,10 +28,8 @@
 
 "permissions": [
   "desktopCapture",
-  "videoCapture",
-  "audioCapture",
-  "camera",
-  "microphone"
+  "activeTab"
+ 
  
 
   

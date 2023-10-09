@@ -45,7 +45,7 @@ const ScreenRecorder = () => {
         audio: audioConstraints,
       };
 
-      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      const stream = await navigator.mediaDevices.getDisplayMedia(constraints);
 
       if (webcamRef.current) {
         webcamRef.current.srcObject = stream;
