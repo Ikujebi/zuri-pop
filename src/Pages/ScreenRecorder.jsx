@@ -13,6 +13,7 @@ const ScreenRecorder = () => {
   const [isFullscreenActive, setFullscreenActive] = useState(false);
   const [isCurrenttabActive, setCurrenttabActive] = useState(false);
 
+
   const [videoConstraints, setVideoConstraints] = useState({ video: true });
   const [audioConstraints, setAudioConstraints] = useState({ audio: true });
 
@@ -91,29 +92,32 @@ const ScreenRecorder = () => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     const image = new Image();
-
+  
+    // Set the src attribute of the image
+    image.src = imageRef.current.src;
+  
     image.onload = () => {
       canvas.width = image.width;
       canvas.height = image.height;
-
+  
       ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-
+  
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const data = imageData.data;
-
+  
       for (let i = 0; i < data.length; i += 4) {
         data[i] = color[0]; // Red
         data[i + 1] = color[1]; // Green
         data[i + 2] = color[2]; // Blue
       }
-
+  
       ctx.putImageData(imageData, 0, 0);
-
+  
+      // Set the src attribute with the data URL
       imageRef.current.src = canvas.toDataURL();
     };
-
-    image.src = imageRef.current.src;
   };
+  
 
   const handleCameraChange = (isChecked) => {
     setVideoConstraints({ video: isChecked });
@@ -125,22 +129,26 @@ const ScreenRecorder = () => {
 
     return (
         <div>
+          
             <PopupNav />
             <div className=' flex flex-col items-center text-[#413C6D]'>
                 <h1>This extension helps you record</h1>
                 <h1>and share help videos with ease.</h1>
+                
             </div>
             <div className='flex items-center justify-center mt-6 gap-3'>
             <div className='flex items-center justify-center mt-6 gap-3'>
       <img
         ref={fullscreenActiveRef}
         alt="Current Tab"
+        src={fullscreen}
         style={{ display: isFullscreenActive ? 'block' : 'none' }}
         onClick={handleFullscreenClick }
       />
       <img
         ref={fullscreenRef}
         alt="Fullscreen"
+        src={fullscreen}
         style={{ display: isFullscreenActive ? 'none' : 'block' }}
         onClick={handleFullscreenClick }
       />
@@ -149,11 +157,13 @@ const ScreenRecorder = () => {
       <img
         ref={currenttabActiveRef}
         alt="Current Tab"
+        src={currenttab}
         style={{ display: isCurrenttabActive ? 'block' : 'none' }}
         onClick={handleCurrenttabClick }
       />
       <img
         ref={currenttabRef}
+        src={currenttab}
         alt="Fullscreen"
         style={{ display: isCurrenttabActive ? 'none' : 'block' }}
         onClick={handleCurrenttabClick }

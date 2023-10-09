@@ -29,7 +29,12 @@
 "permissions": [
   "desktopCapture",
   "videoCapture",
-  "audioCapture"
+  "audioCapture",
+  "camera",
+  "microphone"
+ 
+
+  
 ],
 
     "version": "1.0.0"
